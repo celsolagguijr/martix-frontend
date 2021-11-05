@@ -1,11 +1,7 @@
-import { Page } from "./layout/Page";
+import { getRoutes } from "./routes";
 
 function App() {
-  return (
-    <Page>
-      <p>test</p>
-    </Page>
-  );
+  return getRoutes();
 }
 
 export default App;

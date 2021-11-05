@@ -3,11 +3,11 @@ import thunk from "redux-thunk";
 import storage from "redux-persist/lib/storage";
 import { persistReducer } from "redux-persist";
 // import counterReducer from "./counter";
-// import articleReducer from "./articles";
+import authReducer from "./auth";
 
 const reducers = combineReducers({
   // counter: counterReducer,
-  // article: articleReducer,
+  auth: authReducer,
 });
 
 const persistConfig = {

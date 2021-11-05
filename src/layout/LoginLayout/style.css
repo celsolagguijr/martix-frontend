@@ -1,0 +1,17 @@
+.wrapper{
+    min-height: 100vh;
+    height: 100%;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.header-title-typography {
+    color : #fff !important;
+    margin : 0 !important;
+}
+

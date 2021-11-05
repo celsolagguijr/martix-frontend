@@ -1,0 +1,30 @@
+
+
+.login-container{
+   display: flex;
+    justify-content: center;
+    gap: 2em;
+    margin-top: 3em;
+    flex-wrap: wrap;
+ 
+}
+
+.picture {
+
+    width: 100%;
+    aspect-ratio: 4 / 3 ;
+
+}
+
+ .login-form-forgot {
+    float: right;
+  }
+
+ .ant-col-rtl .login-form-forgot {
+    float: left;
+  }
+
+
+ .login-form-button {
+    width: 100%;
+  }
