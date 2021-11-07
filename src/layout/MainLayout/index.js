@@ -1,17 +1,20 @@
 import React from "react";
 import { Layout, Typography } from "antd";
+import { Link } from "react-router-dom";
 
 import "./style.css";
 
 const { Header, Content } = Layout;
 
-const LoginLayout = ({ children }) => {
+const MainLayout = ({ children }) => {
   return (
     <Layout className="wrapper">
       <Header className="header">
-        <Typography.Title level={2} className="header-title-typography">
-          Matrics
-        </Typography.Title>
+        <Link to={`/`}>
+          <Typography.Title level={2} className="header-title-typography">
+            Matrics
+          </Typography.Title>
+        </Link>
       </Header>
 
       <Content>
@@ -21,4 +24,4 @@ const LoginLayout = ({ children }) => {
   );
 };
 
-export default LoginLayout;
+export default MainLayout;

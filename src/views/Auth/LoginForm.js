@@ -1,8 +1,8 @@
 import React from "react";
-import { Card, Form, Input, Button, Divider, Alert } from "antd";
+import { Card, Form, Input, Button, Alert } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
-import { useParams } from "react-router-dom";
-import LoginLayout from "../../layout/LoginLayout";
+import { useParams, Link } from "react-router-dom";
+import MainLayout from "../../layout/MainLayout";
 
 import { useLogin } from "./useLogin";
 
@@ -18,7 +18,7 @@ const StudentLogin = () => {
   };
 
   return (
-    <LoginLayout>
+    <MainLayout>
       <div className="login-container">
         <Card
           title={`Sign In as ${type === "students" ? "Student" : "Teacher"}`}
@@ -31,7 +31,6 @@ const StudentLogin = () => {
           <Form
             name="normal_login"
             className="login-form"
-            initialValues={{ remember: true }}
             size="large"
             onFinish={onFinish}>
             <Form.Item
@@ -56,21 +55,20 @@ const StudentLogin = () => {
               <Button
                 type="primary"
                 htmlType="submit"
-                className="login-form-button"
+                // className="login-form-button"
                 loading={isLoading}>
-                Log in
+                Sign In
               </Button>
 
-              <Divider>Or</Divider>
-
-              <Button type="link" className="login-form-button">
-                Register
-              </Button>
+              <span style={{ marginLeft: "1em" }}>
+                Don't have an account ?{" "}
+                <Link to={`/register/${type}`}>Sign Up</Link>
+              </span>
             </Form.Item>
           </Form>
         </Card>
       </div>
-    </LoginLayout>
+    </MainLayout>
   );
 };
 

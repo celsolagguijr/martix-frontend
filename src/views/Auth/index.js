@@ -1,6 +1,6 @@
 import React from "react";
 import { Card, Button } from "antd";
-import LoginLayout from "../../layout/LoginLayout";
+import MainLayout from "../../layout/MainLayout";
 import { setUserType } from "../../redux/auth";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
@@ -17,7 +17,7 @@ const ChooseLayout = () => {
   };
 
   return (
-    <LoginLayout>
+    <MainLayout>
       <div className="login-container">
         <Card
           style={{ width: 350 }}
@@ -46,7 +46,7 @@ const ChooseLayout = () => {
           </Button>
         </Card>
       </div>
-    </LoginLayout>
+    </MainLayout>
   );
 };
 

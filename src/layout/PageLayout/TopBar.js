@@ -6,7 +6,7 @@ const { Header } = Layout;
 
 export const TopBar = ({ collapsed, handleCollapse }) => {
   return (
-    <Header className="site-layout">
+    <Header className="top-bar">
       {!collapsed ? null : (
         <Typography.Title level={3} className="app-title-2">
           Matrics

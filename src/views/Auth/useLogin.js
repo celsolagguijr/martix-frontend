@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { login } from "../../services/authentication";
 import { useSelector, useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { setAuth } from "../../redux/auth";
 
 export const useLogin = () => {
   const dispatch = useDispatch();
 
+  const history = useHistory();
   const [isLoading, setIsLoading] = useState(false);
   const [alert, setAlert] = useState({
     show: false,
@@ -34,6 +36,7 @@ export const useLogin = () => {
     });
 
     dispatch(setAuth(data.data.user));
+    history.push(`/${userType}/dashboard`);
   };
 
   const loginFailed = ({ error }) => {

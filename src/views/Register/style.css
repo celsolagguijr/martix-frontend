@@ -1,0 +1,15 @@
+
+
+.register-container{
+    display: flex;
+     justify-content: center;
+     gap: 2em;
+    
+     flex-wrap: wrap;
+  
+ }
+ 
+
+ .account-info{
+     margin-top: 4em;
+ }
