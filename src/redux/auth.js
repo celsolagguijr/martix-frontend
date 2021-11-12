@@ -22,7 +22,11 @@ export const authSlice = createSlice({
     },
 
     logout: (state) => {
-      state = initialState;
+      state.access_token = null;
+      state.userType = "";
+      state.userName = "";
+      state.lastName = "";
+      state.firstName = "";
     },
     setUserType: (state, action) => {
       state.userType = action.payload;

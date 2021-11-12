@@ -5,7 +5,7 @@ import { TopBar } from "./TopBar";
 import { SideBar } from "./SideBar";
 import "./layout.css";
 
-export const Page = ({ children }) => {
+export const Page = ({ children, ...rest }) => {
   const [collapsed, setCollapsed] = useState(false);
 
   return (
@@ -24,7 +24,7 @@ export const Page = ({ children }) => {
             setCollapsed((prev) => !prev);
           }}
         />
-        <PageContent>{children}</PageContent>
+        <PageContent {...rest}>{children}</PageContent>
       </Layout>
     </Layout>
   );

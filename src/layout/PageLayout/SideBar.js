@@ -18,7 +18,7 @@ export const SideBar = ({ collapsed, handleOpen }) => {
       trigger={null}
       collapsible
       collapsed={collapsed}
-      breakpoint="sm"
+      // breakpoint="sm"
       width={250}
       onBreakpoint={(broken) => {
         handleOpen();

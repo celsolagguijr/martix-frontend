@@ -1,7 +1,9 @@
 import React from "react";
-import { Layout } from "antd";
+import { Layout, Typography } from "antd";
 const { Content } = Layout;
 
-export const PageContent = ({ children }) => {
+const { Title } = Typography;
+
+export const PageContent = ({ children, ...rest }) => {
   return <Content className="app-content">{children}</Content>;
 };

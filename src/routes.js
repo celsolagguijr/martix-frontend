@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import {
   BrowserRouter as Router,
   Route,
@@ -14,39 +14,110 @@ import LoginForm from "./views/Auth/LoginForm";
 import Register from "./views/Register";
 import { NotFound } from "./views/NotFound";
 import { DashBoard } from "./views/DashBoard";
+import { Subjects } from "./views/Subjects";
 
-// export const RouteGuard = ({
-//   hasAccess,
-//   route = "/register/:type",
-//   fallbackRoute = "/",
-//   component,
-//   exact,
-// }) => {
-//   return hasAccess ? (
-//     <Route path={route} exact={exact} component={component} />
-//   ) : (
-//     <Redirect to={fallbackRoute} exact />
-//   );
-// };
-
-export const Logout = () => {
+const Logout = () => {
   const dispatch = useDispatch();
   dispatch(logout());
 
   return <Redirect to="/" />;
 };
 
+const RouteProtected = ({
+  isProtected = false,
+  hasAccess = true,
+  fallBackRoute = "*",
+  ...rest
+}) => {
+  if (!isProtected) return <Redirect to="/" />;
+
+  if (!hasAccess) return <Redirect to={fallBackRoute} />;
+
+  return <Route {...rest} />;
+};
+
+const RouteUnprotected = ({
+  isAuthenticated = false,
+  fallBackRoute = "",
+  ...rest
+}) => {
+  if (!isAuthenticated) return <Route {...rest} />;
+
+  return <Redirect to={fallBackRoute} />;
+};
+
 export const AppRoutes = () => {
-  // const { access_token, userType } = useSelector(({ auth }) => auth);
+  const { access_token, userType } = useSelector(({ auth }) => auth);
 
   return (
     <Router>
       <Switch>
-        <Route path="/" exact component={Auth} />
-        <Route path="/register/:type" exact component={Register} />
-        <Route path="/login/:type" exact component={LoginForm} />
-        <Route path="/students/dashboard" exact component={DashBoard} />
-        <Route path="/teachers/dashboard" exact component={DashBoard} />
+        {/* student access */}
+
+        <RouteProtected
+          isProtected={access_token}
+          hasAccess={userType === "students"}
+          exact
+          path={"/students/dashboard"}
+          component={DashBoard}
+        />
+
+        {/* teachers access */}
+
+        <RouteProtected
+          isProtected={access_token}
+          hasAccess={userType === "teachers"}
+          exact
+          path={"/teachers/dashboard"}
+          component={DashBoard}
+        />
+
+        <RouteProtected
+          isProtected={access_token}
+          hasAccess={userType === "teachers"}
+          exact
+          path={"/teachers/subjects"}
+          component={Subjects}
+        />
+
+        {/* all outside routes */}
+
+        <RouteUnprotected
+          isAuthenticated={access_token}
+          fallBackRoute={
+            userType === "students"
+              ? "/students/dashboard"
+              : "/teachers/dashboard"
+          }
+          exact
+          path="/"
+          component={Auth}
+        />
+
+        <RouteUnprotected
+          isAuthenticated={access_token}
+          fallBackRoute={
+            userType === "students"
+              ? "/students/dashboard"
+              : "/teachers/dashboard"
+          }
+          exact
+          path="/register/:type"
+          component={Register}
+        />
+
+        <RouteUnprotected
+          isAuthenticated={access_token}
+          fallBackRoute={
+            userType === "students"
+              ? "/students/dashboard"
+              : "/teachers/dashboard"
+          }
+          exact
+          path="/login/:type"
+          component={LoginForm}
+        />
+
         <Route path="/logout" exact component={Logout} />
         <Route path="*" component={NotFound} />
       </Switch>

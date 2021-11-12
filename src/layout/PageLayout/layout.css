@@ -15,9 +15,9 @@ html, body {
 
 .app-content{
   margin: 24px 16px;
-  padding: 24;
+  padding: 24px;
   min-height: 280;
-  background: #fff;
+  /* background: #fff; */
 }
 
 .app-title{
