@@ -15,6 +15,8 @@ import Register from "./views/Register";
 import { NotFound } from "./views/NotFound";
 import { DashBoard } from "./views/DashBoard";
 import { Subjects } from "./views/Subjects";
+import { SubjectLessons } from "./views/SubjectLessons";
+import { ViewLesson } from "./views/ViewLesson";
 
 const Logout = () => {
   const dispatch = useDispatch();
@@ -78,6 +80,22 @@ export const AppRoutes = () => {
           exact
           path={"/teachers/subjects"}
           component={Subjects}
+        />
+
+        <RouteProtected
+          isProtected={access_token}
+          hasAccess={userType === "teachers"}
+          exact
+          path={"/teachers/subjects/:id"}
+          component={SubjectLessons}
+        />
+
+        <RouteProtected
+          isProtected={access_token}
+          hasAccess={userType === "teachers"}
+          exact
+          path={"/teachers/lessons/:lesson_id"}
+          component={ViewLesson}
         />
 
         {/* all outside routes */}

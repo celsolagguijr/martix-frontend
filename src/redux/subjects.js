@@ -8,6 +8,20 @@ const initialState = {
     status: false,
     msg: "",
   },
+  selectedSubject: {
+    id: null,
+    code: "",
+    description: "",
+    lessons: [],
+  },
+  lessonMaterials: {
+    titel: "",
+    description: "",
+    instructions: "",
+    startsAt: null,
+    endsAt: null,
+    materials: [],
+  },
 };
 
 export const subjectSlice = createSlice({
@@ -44,8 +58,51 @@ export const subjectSlice = createSlice({
     },
     deleteSubject: (state, action) => {
       const id = action.payload;
-
       state.subjects = state.subjects.filter((data) => data.id !== id);
+    },
+    onSelectSubject: (state, action) => {
+      const { id, code, description } = action.payload;
+
+      state.selectedSubject = {
+        ...state.selectedSubject,
+        id,
+        code,
+        description,
+      };
+    },
+    loadLessonsFromSelectedSubject: (state, action) => {
+      state.selectedSubject.lessons = [...action.payload];
+    },
+
+    addSubjectLesson: (state, action) => {
+      state.selectedSubject.lessons.push(action.payload);
+    },
+    updateSubjectLesson: (state, action) => {
+      const index = state.selectedSubject.lessons.findIndex(
+        (data) => data.id === action.payload.id,
+      );
+
+      state.selectedSubject.lessons[index] = {
+        ...action.payload,
+      };
+    },
+    deleteSubjectLesson: (state, action) => {
+      state.selectedSubject.lessons = state.selectedSubject.lessons.filter(
+        (data) => data.id !== action.payload,
+      );
+    },
+    loadLessonDetails: (state, action) => {
+      state.lessonMaterials = {
+        ...state.lessonMaterials,
+        ...action.payload,
+      };
+    },
+
+    loadLessonMaterials: (state, action) => {
+      state.lessonMaterials = {
+        ...state.lessonMaterials,
+        materials: [...action.payload],
+      };
     },
   },
 });
@@ -59,6 +116,13 @@ export const {
   addSubject,
   updateSubject,
   deleteSubject,
+  onSelectSubject,
+  loadLessonsFromSelectedSubject,
+  addSubjectLesson,
+  updateSubjectLesson,
+  deleteSubjectLesson,
+  loadLessonDetails,
+  loadLessonMaterials,
 } = actions;
 
 export const fetchTeacherSubjects = () => async (dispatch, getState) => {

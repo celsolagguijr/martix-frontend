@@ -70,7 +70,7 @@ export const Subjects = () => {
             ) : (
               <Row gutter={[16, 16]}>
                 {subjects.map((data, i) => (
-                  <Col key={i} xs={24} sm={24} md={12} lg={6} xl={5}>
+                  <Col key={i} xs={24} sm={24} md={12} lg={6} xl={6}>
                     <SubjectItem
                       handleEditSubject={handleEditSubject}
                       {...data}
