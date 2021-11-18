@@ -99,3 +99,50 @@ export const lessonMaterials = async ({ access_token, lesson_id }) => {
     };
   }
 };
+
+export const saveMaterials = async ({ access_token, body }) => {
+  try {
+    const { data } = await axios({
+      method: "POST",
+      url: `/api/materials`,
+      headers: {
+        "Content-Type": "multipart/form-data",
+        Authorization: `Bearer ${access_token}`,
+      },
+      data: body,
+    });
+
+    return {
+      success: true,
+      data,
+    };
+  } catch (error) {
+    return {
+      success: false,
+      error: error?.response?.data,
+    };
+  }
+};
+
+export const deleteMaterial = async ({ access_token, material_id }) => {
+  try {
+    const { data } = await axios({
+      method: "DELETE",
+      url: `/api/materials/${material_id}`,
+      headers: {
+        "Content-Type": "multipart/form-data",
+        Authorization: `Bearer ${access_token}`,
+      },
+    });
+
+    return {
+      success: true,
+      data,
+    };
+  } catch (error) {
+    return {
+      success: false,
+      error: error?.response?.data,
+    };
+  }
+};

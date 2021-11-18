@@ -15,7 +15,7 @@ const initialState = {
     lessons: [],
   },
   lessonMaterials: {
-    titel: "",
+    title: "",
     description: "",
     instructions: "",
     startsAt: null,
@@ -104,6 +104,16 @@ export const subjectSlice = createSlice({
         materials: [...action.payload],
       };
     },
+
+    addMaterials: (state, actions) => {
+      state.lessonMaterials.materials.push(actions.payload);
+    },
+
+    removeMaterial: (state, action) => {
+      state.lessonMaterials.materials = state.lessonMaterials.materials.filter(
+        (data) => data.id !== action.payload,
+      );
+    },
   },
 });
 
@@ -123,6 +133,8 @@ export const {
   deleteSubjectLesson,
   loadLessonDetails,
   loadLessonMaterials,
+  addMaterials,
+  removeMaterial,
 } = actions;
 
 export const fetchTeacherSubjects = () => async (dispatch, getState) => {

@@ -1,8 +1,10 @@
 import React from "react";
 
-import { Card, Empty, List, Tag } from "antd";
+import { Card, Empty, List, Descriptions } from "antd";
 
-export const Materials = ({ materials, edit, remove }) => {
+import moment from "moment";
+
+export const Materials = ({ materials, remove }) => {
   return (
     <Card title={`Materials (${materials.length})`}>
       {materials.length === 0 ? (
@@ -15,17 +17,36 @@ export const Materials = ({ materials, edit, remove }) => {
           renderItem={(item) => (
             <List.Item
               actions={[
-                <a key="list-loadmore-edit">Download</a>,
-                <a key="list-loadmore-more">Delete</a>,
+                <a
+                  key="list-loadmore-edit"
+                  href={`http://localhost:3000/api/materials/${item.fileName}/download`}
+                  target="_blank">
+                  Download
+                </a>,
+                <a key="list-loadmore-more" onClick={() => remove(item.id)}>
+                  Delete
+                </a>,
               ]}>
               <List.Item.Meta
-                title={<a href="https://ant.design">{item.title}</a>}
+                title={item.title}
                 description={item.description}
               />
 
-              <Tag color="blue">File type : {item.fileType}</Tag>
-              <Tag color="green">File name : {item.fileName}</Tag>
-              <Tag color="red">Size : {item.fileSize}</Tag>
+              <Descriptions>
+                <Descriptions.Item label="File Type">
+                  {item.fileType}
+                </Descriptions.Item>
+
+                <Descriptions.Item label="Size">
+                  {item.fileSize} bytes
+                </Descriptions.Item>
+                <Descriptions.Item label="Date posted">
+                  {moment(item.createdAt).fromNow()}
+                </Descriptions.Item>
+                <Descriptions.Item label="File Name">
+                  {item.fileName}
+                </Descriptions.Item>
+              </Descriptions>
             </List.Item>
           )}
         />
