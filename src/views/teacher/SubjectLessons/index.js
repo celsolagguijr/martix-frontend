@@ -1,12 +1,13 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import Page from "../../layout/PageLayout/Page";
+import Page from "../../../layout/PageLayout/Page";
 
 import { useLessons } from "./useLessons";
 
 import { Row, Col, PageHeader, Space } from "antd";
 import { CreateUpdateLessonForm } from "./CreateUpdateLessonForm";
 import { Lessons } from "./Lessons";
+import { Students } from "./Students";
 
 export const SubjectLessons = () => {
   const { id } = useParams();
@@ -50,6 +51,16 @@ export const SubjectLessons = () => {
               reset={resetForm}
               isSaving={isSaving}
             />
+            <div style={{ marginTop: "1em" }}>
+              <Students title={"Students"} subject_id={id} />
+            </div>
+            <div style={{ marginTop: "1em" }}>
+              <Students
+                title={"Pending for approval"}
+                type={0}
+                subject_id={id}
+              />
+            </div>
           </Col>
           <Col sm={24} md={12} lg={14} xl={14}>
             <Lessons lessons={lessons} edit={edit} remove={remove} />

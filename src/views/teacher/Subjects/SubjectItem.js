@@ -1,5 +1,5 @@
 import React from "react";
-import { onSelectSubject } from "../../redux/subjects";
+import { onSelectSubject } from "../../../redux/subjects";
 import { useDispatch } from "react-redux";
 import { Card } from "antd";
 import { EditOutlined, FolderOpenOutlined } from "@ant-design/icons";
@@ -35,7 +35,10 @@ export const SubjectItem = ({ handleEditSubject, ...data }) => {
           }}
         />,
       ]}>
-      <Meta title={data.code} description={data.description} />
+      <Meta
+        title={`${data.code} | ${data.joinCode}`}
+        description={data.description}
+      />
     </Card>
   );
 };

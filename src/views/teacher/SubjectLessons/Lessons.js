@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Card, Empty, List, Avatar, Button, Skeleton } from "antd";
+import { Card, Empty, List } from "antd";
 
 export const Lessons = ({ lessons, edit, remove }) => {
   return (
@@ -31,7 +31,9 @@ export const Lessons = ({ lessons, edit, remove }) => {
                 </a>,
               ]}>
               <List.Item.Meta
-                title={<a href="https://ant.design">{item.title}</a>}
+                title={
+                  <a href={"/teachers/lessons/" + item.id}>{item.title}</a>
+                }
                 description={item.description}
               />
             </List.Item>

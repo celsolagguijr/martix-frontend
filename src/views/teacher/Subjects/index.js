@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { fetchTeacherSubjects } from "../../redux/subjects";
+import { fetchTeacherSubjects } from "../../../redux/subjects";
 import { useSelector, useDispatch } from "react-redux";
 
-import Page from "../../layout/PageLayout/Page";
+import Page from "../../../layout/PageLayout/Page";
 import { SubjectItem } from "./SubjectItem";
 
 import "./style.css";

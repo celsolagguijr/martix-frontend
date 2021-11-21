@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { signup } from "../../services/registration";
+import { useHistory } from "react-router-dom";
 
 export const useSignUp = () => {
+  const history = useHistory();
   const [loading, setLoading] = useState(false);
   const [alert, setAlert] = useState({
     show: false,
@@ -23,6 +25,10 @@ export const useSignUp = () => {
   };
 
   const saveSuccess = ({ data }) => {
+    setTimeout(() => {
+      history.push(`/login/${userType}`);
+    }, 500);
+
     setAlert({
       show: true,
       type: "success",

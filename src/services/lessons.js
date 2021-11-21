@@ -130,7 +130,7 @@ export const deleteMaterial = async ({ access_token, material_id }) => {
       method: "DELETE",
       url: `/api/materials/${material_id}`,
       headers: {
-        "Content-Type": "multipart/form-data",
+        "Content-Type": "application/json",
         Authorization: `Bearer ${access_token}`,
       },
     });

@@ -6,12 +6,12 @@ import {
   loadLessonMaterials,
   addMaterials,
   removeMaterial,
-} from "../../redux/subjects";
+} from "../../../redux/subjects";
 import {
   lessonMaterials,
   saveMaterials,
   deleteMaterial,
-} from "../../services/lessons";
+} from "../../../services/lessons";
 import { message } from "antd";
 
 export const useLessonMaterials = ({ lesson_id }) => {

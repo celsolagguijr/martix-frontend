@@ -5,14 +5,14 @@ import {
   subjectDetails,
   saveLesson,
   deleteLesson,
-} from "../../services/lessons";
+} from "../../../services/lessons";
 import {
   onSelectSubject,
   loadLessonsFromSelectedSubject,
   addSubjectLesson,
   updateSubjectLesson,
   deleteSubjectLesson,
-} from "../../redux/subjects";
+} from "../../../redux/subjects";
 import { message } from "antd";
 
 const dateNow = moment(new Date(), "YYYY/MM/DD");

@@ -4,11 +4,13 @@ import storage from "redux-persist/lib/storage";
 import { persistReducer } from "redux-persist";
 import authReducer from "./auth";
 import subjectReducer from "./subjects";
+import studentSubjects from "./studentSubjects";
 // import lessonsReducer from "./lessons";
 
 const reducers = combineReducers({
   subject: subjectReducer,
   auth: authReducer,
+  studentSubjects,
   // lessons: lessonsReducer,
 });
 

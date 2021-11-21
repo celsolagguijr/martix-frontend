@@ -61,7 +61,7 @@ export const subjectSlice = createSlice({
       state.subjects = state.subjects.filter((data) => data.id !== id);
     },
     onSelectSubject: (state, action) => {
-      const { id, code, description } = action.payload;
+      const { id, code, description } = action.payload ?? {};
 
       state.selectedSubject = {
         ...state.selectedSubject,

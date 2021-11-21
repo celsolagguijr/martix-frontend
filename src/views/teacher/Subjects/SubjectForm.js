@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { saveTeacherSubject, removeSubj } from "../../services/subjects";
-import { addSubject, updateSubject, deleteSubject } from "../../redux/subjects";
+import { saveTeacherSubject, removeSubj } from "../../../services/subjects";
+import {
+  addSubject,
+  updateSubject,
+  deleteSubject,
+} from "../../../redux/subjects";
 import { useSelector, useDispatch } from "react-redux";
 import { Form, Input, Button, message } from "antd";
 

@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import Page from "../../layout/PageLayout/Page";
+import Page from "../../../layout/PageLayout/Page";
 
 import { useLessonMaterials } from "./useLessonMaterials";
 
