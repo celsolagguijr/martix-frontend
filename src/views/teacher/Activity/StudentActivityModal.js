@@ -54,7 +54,7 @@ export const StudentActivityModal = ({
             <List.Item.Meta
               title={
                 <a
-                  href={`http://localhost:3000/api/activities/${item.filename}/download`}
+                  href={`http://localhost:3000/api/student-activities/${item.filename}/download`}
                   target="_blank">
                   {item.Student.lastName}, {item.Student.firstName} |{" "}
                   {item.Student.userName}

@@ -176,3 +176,54 @@ export const getStudentActivities = async ({ access_token, activity_id }) => {
     };
   }
 };
+
+export const getActiveActivities = async ({ access_token, lesson_id }) => {
+  try {
+    const { data } = await axios({
+      method: "GET",
+      url: `/api/lessons/${lesson_id}/active-activities`,
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${access_token}`,
+      },
+    });
+
+    return {
+      success: true,
+      data,
+    };
+  } catch (error) {
+    return {
+      success: false,
+      error: error?.response?.data,
+    };
+  }
+};
+
+export const saveStudentActivity = async ({
+  access_token,
+  body,
+  activity_id,
+}) => {
+  try {
+    const { data } = await axios({
+      method: "POST",
+      url: `/api/activities/${activity_id}/upload-student-activity`,
+      headers: {
+        "Content-Type": "multipart/form-data",
+        Authorization: `Bearer ${access_token}`,
+      },
+      data: body,
+    });
+
+    return {
+      success: true,
+      data,
+    };
+  } catch (error) {
+    return {
+      success: false,
+      error: error?.response?.data,
+    };
+  }
+};

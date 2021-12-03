@@ -70,7 +70,7 @@ export const ModalUpdateCreate = ({
   };
 
   return (
-    <Modal visible={open} title="Activity" footer={null}>
+    <Modal visible={open} title="Activity" footer={null} onCancel={handleClose}>
       <Form
         name="nest-messages"
         layout="vertical"
@@ -94,9 +94,6 @@ export const ModalUpdateCreate = ({
         <Form.Item>
           <Button type="primary" htmlType="submit" loading={loading}>
             Save
-          </Button>
-          <Button type="text" onClick={handleClose}>
-            Cancel
           </Button>
         </Form.Item>
       </Form>

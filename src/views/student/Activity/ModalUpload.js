@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Modal, Button, Form, Input, message, Upload } from "antd";
 import { InboxOutlined } from "@ant-design/icons";
-import { saveActivityAttachment } from "../../../services/activities";
+import { saveStudentActivity } from "../../../services/activities";
 import { useSelector } from "react-redux";
 
 export const ModalUpload = ({ open, handleClose, activity_id = 0 }) => {
@@ -19,10 +19,10 @@ export const ModalUpload = ({ open, handleClose, activity_id = 0 }) => {
     setLoading(true);
 
     const body = new FormData();
-    body.append("activity", formData.fileList[0]);
+    body.append("student_activity", formData.fileList[0]);
     body.append("title", formData.title);
 
-    const { success, data, error } = await saveActivityAttachment({
+    const { success, data, error } = await saveStudentActivity({
       access_token,
       body,
       activity_id,
@@ -31,7 +31,7 @@ export const ModalUpload = ({ open, handleClose, activity_id = 0 }) => {
     setLoading(false);
 
     if (success) {
-      message.success("Successfully Saved!");
+      message.success("Successfully Uploaded!");
       handleClose();
 
       return;

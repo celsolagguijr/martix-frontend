@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
-import { getLessonActivities } from "../../../services/activities";
+import { getActiveActivities } from "../../../services/activities";
 
 export const useActivity = ({ lesson_id }) => {
   const [loading, setLoading] = useState(false);
@@ -14,7 +14,7 @@ export const useActivity = ({ lesson_id }) => {
 
     const fetchLessons = async () => {
       setLoading(true);
-      const { success, ...result } = await getLessonActivities({
+      const { success, ...result } = await getActiveActivities({
         access_token,
         lesson_id,
       });

@@ -1,13 +1,6 @@
 import React from "react";
 import { Layout, Menu, Typography } from "antd";
-import {
-  BarChartOutlined,
-  ReadOutlined,
-  FileDoneOutlined,
-  NotificationOutlined,
-  SettingOutlined,
-  LogoutOutlined,
-} from "@ant-design/icons";
+import { ReadOutlined, LogoutOutlined } from "@ant-design/icons";
 import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 
@@ -39,9 +32,6 @@ export const SideBar = ({ collapsed, handleOpen }) => {
         mode="inline"
         defaultSelectedKeys={["1"]}
         className={`${collapsed ? "menu-margin-top" : ""}`}>
-        <Menu.Item key="1" icon={<BarChartOutlined />}>
-          Dashboard
-        </Menu.Item>
         <Menu.Item
           key="3"
           icon={<ReadOutlined />}
@@ -50,15 +40,7 @@ export const SideBar = ({ collapsed, handleOpen }) => {
           }}>
           Subjects
         </Menu.Item>
-        <Menu.Item key="4" icon={<FileDoneOutlined />}>
-          Activities
-        </Menu.Item>
-        <Menu.Item key="5" icon={<NotificationOutlined />}>
-          Announcements
-        </Menu.Item>
-        <Menu.Item key="6" icon={<SettingOutlined />}>
-          Settings
-        </Menu.Item>
+
         <Menu.Item
           key="7"
           icon={<LogoutOutlined />}

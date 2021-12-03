@@ -7,6 +7,7 @@ import { useLessonMaterials } from "./useLessonMaterials";
 import { Row, Col, PageHeader, Space } from "antd";
 import { Materials } from "./Materials";
 import { Instructions } from "./Instructions";
+import { Activities } from "../Activity";
 
 import moment from "moment";
 
@@ -41,6 +42,10 @@ export const LessonDetails = () => {
                 "MMMM DD, YYYY @ hh:mm a",
               )}`}
             />
+          </Col>
+
+          <Col sm={24} md={24} lg={24} xl={24}>
+            <Activities lesson_id={lesson_id} />
           </Col>
           <Col sm={24} md={24} lg={24} xl={24}>
             <Materials materials={materials ?? []} />

@@ -1,27 +1,20 @@
-import React, { useState } from "react";
-import { Button } from "antd";
+import React from "react";
 import { useActivity } from "./useActivity";
 import { Activities as ActivityList } from "./Activities";
-import { ModalUpdateCreate } from "./ModalUpdateCreate";
 
-import { Card, Spin } from "antd";
+import { Card, Spin, Button } from "antd";
 
 export const Activities = ({ lesson_id }) => {
   const { activities, loading, setRefresh } = useActivity({ lesson_id });
-  const [open, setOpen] = useState(false);
 
   return (
     <>
       <Card
-        title={`Activities (${activities.length})`}
+        title={`Activities(${activities.length})`}
         extra={
           <>
             <Button type="text" onClick={() => setRefresh(true)}>
               Refresh
-            </Button>
-
-            <Button type="primary" onClick={() => setOpen(true)}>
-              Create Activity
             </Button>
           </>
         }>
@@ -33,11 +26,6 @@ export const Activities = ({ lesson_id }) => {
 
         <ActivityList activities={activities} />
       </Card>
-      <ModalUpdateCreate
-        lesson_id={lesson_id}
-        open={open}
-        handleClose={() => setOpen(false)}
-      />
     </>
   );
 };
