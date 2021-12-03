@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import Page from "../../../layout/PageLayout/Page";
-
+import { Activities } from "../Activity";
 import { useLessonMaterials } from "./useLessonMaterials";
 
 import { Row, Col, PageHeader, Space } from "antd";
@@ -17,7 +17,7 @@ export const ViewLesson = () => {
   const {
     materials,
     lessonDetails,
-    loading,
+
     isSaving,
     form,
     setForm,
@@ -53,6 +53,9 @@ export const ViewLesson = () => {
               )}`}
             />
 
+            <div style={{ marginTop: "1em" }}>
+              <Activities lesson_id={lesson_id} />
+            </div>
             <div style={{ marginTop: "1em" }}>
               <Materials materials={materials ?? []} remove={remove} />
             </div>
