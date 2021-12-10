@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Modal, List, message } from "antd";
+import { Modal, List, message, Tag } from "antd";
 import { getStudentActivities } from "../../../services/activities";
 import { useSelector } from "react-redux";
+import moment from "moment";
+
+import { UserOutlined } from "@ant-design/icons";
 
 export const StudentActivityModal = ({
   open,
@@ -50,8 +53,22 @@ export const StudentActivityModal = ({
         dataSource={activities}
         loading={loading}
         renderItem={(item) => (
-          <List.Item>
+          <List.Item
+            actions={[
+              <Tag
+                key="tag"
+                color={
+                  moment(item.LessonActivity.dateEnd) < moment(item.createdAt)
+                    ? "red"
+                    : "blue"
+                }>
+                {moment(item.LessonActivity.dateEnd) < moment(item.createdAt)
+                  ? "Late"
+                  : "On Time"}
+              </Tag>,
+            ]}>
             <List.Item.Meta
+              avatar={<UserOutlined />}
               title={
                 <a
                   href={`http://localhost:3000/api/student-activities/${item.filename}/download`}
