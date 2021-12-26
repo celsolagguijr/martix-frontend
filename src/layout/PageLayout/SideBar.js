@@ -1,6 +1,10 @@
 import React from "react";
 import { Layout, Menu, Typography } from "antd";
-import { ReadOutlined, LogoutOutlined } from "@ant-design/icons";
+import {
+  ReadOutlined,
+  LogoutOutlined,
+  SettingOutlined,
+} from "@ant-design/icons";
 import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 
@@ -39,6 +43,15 @@ export const SideBar = ({ collapsed, handleOpen }) => {
             history.push(`/${userType}/subjects`);
           }}>
           Subjects
+        </Menu.Item>
+
+        <Menu.Item
+          key="3"
+          icon={<SettingOutlined />}
+          onClick={() => {
+            history.push(`/${userType}/settings`);
+          }}>
+          Settings
         </Menu.Item>
 
         <Menu.Item

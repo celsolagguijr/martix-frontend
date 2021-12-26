@@ -4,6 +4,11 @@ const initialState = {
   userName: "",
   firstName: "",
   lastName: "",
+  email: "",
+  address: "",
+  contactNumber: "",
+  profile: "",
+  birthdate: "",
   access_token: null,
   userType: "",
 };
@@ -13,11 +18,27 @@ export const authSlice = createSlice({
   initialState,
   reducers: {
     setAuth: (state, action) => {
-      const { userName, firstName, lastName, access_token } = action.payload;
+      const {
+        userName,
+        firstName,
+        lastName,
+        access_token,
+        contactNumber,
+        email,
+        profile,
+        birthdate,
+        address,
+      } = action.payload;
 
       state.userName = userName;
       state.firstName = firstName;
       state.lastName = lastName;
+      state.contactNumber = contactNumber;
+      state.email = email;
+      state.profile = profile;
+      state.birthdate = birthdate;
+      state.address = address;
+
       state.access_token = access_token;
     },
 
@@ -27,15 +48,33 @@ export const authSlice = createSlice({
       state.userName = "";
       state.lastName = "";
       state.firstName = "";
+      state.contactNumber = "";
+      state.email = "";
+      state.profile = "";
+      state.birthdate = "";
+      state.address = "";
     },
     setUserType: (state, action) => {
       state.userType = action.payload;
+    },
+
+    updateState: (state, action) => {
+      state.lastName = action.payload.lastName;
+      state.firstName = action.payload.firstName;
+      state.contactNumber = action.payload.contactNumber;
+      state.email = action.payload.email;
+      state.birthdate = action.payload.birthdate;
+      state.address = action.payload.address;
+    },
+    updateProfile: (state, action) => {
+      state.profile = action.payload;
     },
   },
 });
 
 const { reducer, actions } = authSlice;
 
-export const { setAuth, setUserType, logout } = actions;
+export const { setAuth, setUserType, logout, updateState, updateProfile } =
+  actions;
 
 export default reducer;

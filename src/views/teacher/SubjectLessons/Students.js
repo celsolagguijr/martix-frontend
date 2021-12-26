@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Card, List, Empty } from "antd";
+import { Card, List, Empty, Avatar } from "antd";
 import { joinedStudents, updateStatus } from "../../../services/subjects";
 import { useSelector } from "react-redux";
 import { message, Button } from "antd";
@@ -88,7 +88,12 @@ export const Students = ({ title, type = 1, subject_id }) => {
                     ]
               }>
               <List.Item.Meta
-                avatar={<UserOutlined />}
+                avatar={
+                  <Avatar
+                    src={`http://localhost:3000/profile_picture/${item.Student.profile}`}>
+                    <UserOutlined />
+                  </Avatar>
+                }
                 title={`${item.Student.firstName} ${item.Student.lastName}`}
                 description={`${item.Student.userName} | ${item.Student.email}`}
               />

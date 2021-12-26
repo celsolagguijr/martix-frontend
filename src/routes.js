@@ -19,6 +19,7 @@ import { DashBoard } from "./views/teacher/DashBoard";
 import { Subjects } from "./views/teacher/Subjects";
 import { SubjectLessons } from "./views/teacher/SubjectLessons";
 import { ViewLesson } from "./views/teacher/ViewLesson";
+import ProfileTeacher from "./views/Profile";
 
 //students
 
@@ -26,6 +27,7 @@ import { DashBoard as StudentDashboard } from "./views/student/Dashboard";
 import { Subjects as StudentSubjects } from "./views/student/Subjects";
 import { SubjectDetails } from "./views/student/SubjectDetails";
 import { LessonDetails } from "./views/student/LessonDetails";
+import ProfileStudent from "./views/Profile";
 
 const Logout = () => {
   const dispatch = useDispatch();
@@ -64,7 +66,6 @@ export const AppRoutes = () => {
     <Router>
       <Switch>
         {/* student access */}
-
         <RouteProtected
           isProtected={access_token}
           hasAccess={userType === "students"}
@@ -72,7 +73,6 @@ export const AppRoutes = () => {
           path={"/students/dashboard"}
           component={StudentDashboard}
         />
-
         <RouteProtected
           isProtected={access_token}
           hasAccess={userType === "students"}
@@ -80,7 +80,6 @@ export const AppRoutes = () => {
           path={"/students/subjects"}
           component={StudentSubjects}
         />
-
         <RouteProtected
           isProtected={access_token}
           hasAccess={userType === "students"}
@@ -88,7 +87,6 @@ export const AppRoutes = () => {
           path={"/students/subjects/:id/lesson"}
           component={SubjectDetails}
         />
-
         <RouteProtected
           isProtected={access_token}
           hasAccess={userType === "students"}
@@ -96,9 +94,15 @@ export const AppRoutes = () => {
           path={"/students/lessons/:lesson_id"}
           component={LessonDetails}
         />
+        <RouteProtected
+          isProtected={access_token}
+          hasAccess={userType === "students"}
+          exact
+          path={"/students/settings"}
+          component={ProfileStudent}
+        />
 
         {/* teachers access */}
-
         <RouteProtected
           isProtected={access_token}
           hasAccess={userType === "teachers"}
@@ -106,7 +110,6 @@ export const AppRoutes = () => {
           path={"/teachers/dashboard"}
           component={DashBoard}
         />
-
         <RouteProtected
           isProtected={access_token}
           hasAccess={userType === "teachers"}
@@ -114,7 +117,6 @@ export const AppRoutes = () => {
           path={"/teachers/subjects"}
           component={Subjects}
         />
-
         <RouteProtected
           isProtected={access_token}
           hasAccess={userType === "teachers"}
@@ -122,7 +124,6 @@ export const AppRoutes = () => {
           path={"/teachers/subjects/:id"}
           component={SubjectLessons}
         />
-
         <RouteProtected
           isProtected={access_token}
           hasAccess={userType === "teachers"}
@@ -131,8 +132,15 @@ export const AppRoutes = () => {
           component={ViewLesson}
         />
 
-        {/* all outside routes */}
+        <RouteProtected
+          isProtected={access_token}
+          hasAccess={userType === "teachers"}
+          exact
+          path={"/teachers/settings"}
+          component={ProfileTeacher}
+        />
 
+        {/* all outside routes */}
         <RouteUnprotected
           isAuthenticated={access_token}
           fallBackRoute={
@@ -144,7 +152,6 @@ export const AppRoutes = () => {
           path="/"
           component={Auth}
         />
-
         <RouteUnprotected
           isAuthenticated={access_token}
           fallBackRoute={
@@ -156,7 +163,6 @@ export const AppRoutes = () => {
           path="/register/:type"
           component={Register}
         />
-
         <RouteUnprotected
           isAuthenticated={access_token}
           fallBackRoute={
@@ -168,7 +174,6 @@ export const AppRoutes = () => {
           path="/login/:type"
           component={LoginForm}
         />
-
         <Route path="/logout" exact component={Logout} />
         <Route path="*" component={NotFound} />
       </Switch>

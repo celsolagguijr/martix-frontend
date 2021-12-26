@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Modal, List, message, Tag } from "antd";
+import { Modal, List, message, Tag, Avatar } from "antd";
 import { getStudentActivities } from "../../../services/activities";
 import { useSelector } from "react-redux";
 import moment from "moment";
@@ -68,7 +68,12 @@ export const StudentActivityModal = ({
               </Tag>,
             ]}>
             <List.Item.Meta
-              avatar={<UserOutlined />}
+              avatar={
+                <Avatar
+                  src={`http://localhost:3000/profile_picture/${item.Student.profile}`}>
+                  <UserOutlined />
+                </Avatar>
+              }
               title={
                 <a
                   href={`http://localhost:3000/api/student-activities/${item.filename}/download`}
